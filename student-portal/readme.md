@@ -1,4 +1,4 @@
-# Deploying Student Portal App (Frontrnd + Flask + MySQL) on AWS EC2 Using Gunicorn & Nginx
+# Deploying Student Portal App (Flask + MySQL +Frontend) on AWS EC2 Using Gunicorn & Nginx
 
 ## ✅ Overview
 
