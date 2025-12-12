@@ -113,14 +113,16 @@ USE student_portal;
 
 CREATE TABLE students (
     id INT AUTO_INCREMENT PRIMARY KEY,
-    name VARCHAR(100),
-    email VARCHAR(100) UNIQUE,
-    password VARCHAR(255)
+    name VARCHAR(100) NOT NULL,
+    username VARCHAR(50) DEFAULT NULL,
+    email VARCHAR(100) NOT NULL UNIQUE,
+    phone VARCHAR(20) DEFAULT NULL,
+    gender VARCHAR(10) DEFAULT NULL,
+    course VARCHAR(100) DEFAULT NULL,
+    password VARCHAR(255) NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 ```
-
-**Screenshot:**
-![Create Database & Table](screenshots/2database.png)
 
 ---
 
@@ -194,9 +196,6 @@ http://<EC2-IP>:5000
 
 Stop with CTRL + C.
 
-**Screenshot:**
-![App running Locally](screenshots/LocalApp.png)
-
 ---
 
 ## **9. Configure Gunicorn**
@@ -204,7 +203,7 @@ Stop with CTRL + C.
 > **Theory:** Gunicorn is a WSGI server that runs your Flask application in production, handling multiple requests efficiently compared to the Flask development server.
 
 ```bash
-gunicorn -b 0.0.0.0:8000 app:app
+gunicorn -b 0.0.0.0:5000 app:app
 ```
 
 Stop it and create a systemd service:
@@ -227,7 +226,7 @@ User=ec2-user
 Group=ec2-user
 WorkingDirectory=/home/ec2-user/student-portal
 Environment="PATH=/home/ec2-user/student-portal/venv/bin"
-ExecStart=/home/ec2-user/student-portal/venv/bin/gunicorn -b 127.0.0.1:8000 app:app
+ExecStart=/home/ec2-user/student-portal/venv/bin/gunicorn -b 127.0.0.1:5000 app:app
 
 [Install]
 WantedBy=multi-user.target
@@ -263,7 +262,7 @@ server {
     server_name _;
 
     location / {
-        proxy_pass http://127.0.0.1:8000;
+        proxy_pass http://127.0.0.1:5000;
         proxy_set_header Host $host;
         proxy_set_header X-Real-IP $remote_addr;
     }
@@ -299,4 +298,6 @@ http://<EC2-PUBLIC-IP>
 ```
 
 **Screenshot:**
-![Running App](screenshots/FinalApp.png)
+![Running App](screenshots/Login.png)
+![Running App](screenshots/Register.png)
+![Running App](screenshots/dashboard.png)

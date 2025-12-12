@@ -1,7 +1,22 @@
+/* style.css */
 body {
-    background: #f7f7f7;
+  background: #f6f8fb;
 }
-
+.sidebar {
+  min-height: 100vh;
+  border-right: 1px solid rgba(0,0,0,0.05);
+}
+.sidebar .nav-link {
+  color: #333;
+}
+.sidebar .nav-link.active {
+  background: linear-gradient(90deg, rgba(2,132,199,0.08), rgba(59,130,246,0.04));
+  border-left: 3px solid #0ea5e9;
+  color: #0369a1;
+}
 .card {
-    border-radius: 12px;
+  border: none;
+  border-radius: 12px;
 }
+.display-6 { font-size: 2rem; }
+footer { padding: 40px 0; }
