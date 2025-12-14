@@ -1,4 +1,4 @@
-# **🌐 AWS Application Load Balancer – Professional Multi-Page Website Project**
+# **🌐 AWS Application Load Balancer Multi-Page Website Project**
 
 ## **✅ Overview**
 
