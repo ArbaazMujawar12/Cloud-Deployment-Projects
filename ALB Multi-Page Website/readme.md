@@ -20,7 +20,6 @@ The project includes a professional UI, navigation-based routing, and dynamic ho
 
 # **Pages & Infrastructure Summary:**
 
-**Screenshot:**
 ![ALB Architecture](screenshots/ArcALB.png)
 
 ---
