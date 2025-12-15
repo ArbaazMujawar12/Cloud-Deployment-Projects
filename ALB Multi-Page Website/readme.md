@@ -1,6 +1,6 @@
-# **🌐 AWS Application Load Balancer Multi-Page Website Project**
+# **AWS Application Load Balancer Multi-Page Website Project**
 
-## **✅ Overview**
+## **Project Overview:**
 
 This project demonstrates a real-world implementation of AWS Application Load Balancer (ALB) using path-based routing to distribute traffic across multiple backend services.
 
@@ -14,11 +14,16 @@ Each service runs on dedicated EC2 instances, ensuring:
 
 The project includes a professional UI, navigation-based routing, and dynamic hostname display to prove load balancing.
 
-# 📌 **Project:** Smart Product Website using AWS Application Load Balancer (ALB).
+# **Project:** Smart Product Website using AWS Application Load Balancer (ALB).
 
 ---
 
-## **🧩 Pages & Infrastructure Summary:**
+# **Pages & Infrastructure Summary:**
+
+**Screenshot:**
+![ALB Architecture](screenshots/ArcALB.png)
+
+---
 
 | Page        | URL Path       | EC2 Instances | Target Group   |
 | ----------- | -------------- | ------------- | -------------- |
@@ -27,21 +32,21 @@ The project includes a professional UI, navigation-based routing, and dynamic ho
 | Laptop      | `/laptop`      | 2             | TG-Laptop      |
 | Accessories | `/accessories` | 2             | TG-Accessories |
 
-📦 Total EC2 Instances: 8
+Total EC2 Instances: 8
 
-🎯 Total Target Groups: 4
+Total Target Groups: 4
 
 ---
 
-# **🚀 Step-by-Step Deployment Guide:**
+# **Step-by-Step Deployment Guide:**
 
 This section explains everything from EC2 launch → Target Groups → ALB → Testing.
 
-# **1️⃣ Launch EC2 Instances:**
+# **1️) Launch EC2 Instances:**
 
 We need 8 EC2 instances (2 per page) to achieve high availability.
 
-### **🔹 Steps**
+### **Steps:**
 
 1. Go to AWS Console → EC2 → Launch Instance
 
@@ -57,7 +62,7 @@ We need 8 EC2 instances (2 per page) to achieve high availability.
 
 7. Auto-assign Public IP: Enable
 
-### **🔹 Security Group (IMPORTANT)**
+### **Security Group (IMPORTANT)**
 
 1. SSH (22) → Your IP
 
@@ -65,7 +70,7 @@ We need 8 EC2 instances (2 per page) to achieve high availability.
 
 3. HTTPS (443) → Anywhere (0.0.0.0/0)
 
-### **🔹 Naming Convention**
+### **Naming Convention**
 
 | Page / Service | Instance Name Prefix | Example Instance Names           |
 | -------------- | -------------------- | -------------------------------- |
@@ -79,11 +84,11 @@ We need 8 EC2 instances (2 per page) to achieve high availability.
 
 ---
 
-# **2️⃣ Configure EC2 Using User Data (Apache + UI)**
+# **2️) Configure EC2 Using User Data (Apache + UI)**
 
 Each EC2 instance uses User Data to automatically install Apache and deploy the UI.
 
-### **🔹Why User Data?**
+### **Why User Data?**
 
 1. Automation
 
@@ -95,7 +100,7 @@ Each EC2 instance uses User Data to automatically install Apache and deploy the 
 
 ---
 
-# **3️⃣ Home Page (Base Landing Page):**
+# **3️) Home Page (Base Landing Page):**
 
 This is the default page routed by ALB.
 
@@ -155,7 +160,7 @@ EOF
 
 ---
 
-# **4️⃣ Mobile Page**
+# **4️) Mobile Page**
 
 Path: /mobile/
 
@@ -255,7 +260,7 @@ EOF
 
 ---
 
-# **5️⃣ Laptop Page**
+# **5️) Laptop Page**
 
 Path: /laptop/
 
@@ -356,7 +361,7 @@ EOF
 
 ---
 
-# **6️⃣ Accessories Page**
+# **6️) Accessories Page**
 
 Path: /accessories/
 
@@ -456,11 +461,11 @@ EOF
 
 ---
 
-# **7️⃣ Create Target Groups:**
+# **7️) Create Target Groups:**
 
 Target Groups define where ALB forwards traffic.
 
-## **🔹 Steps:**
+## **Steps:**
 
 1. Go to EC2 → Target Groups → Create target group
 
@@ -470,7 +475,7 @@ Target Groups define where ALB forwards traffic.
 
 4. VPC: Same as EC2
 
-## **🔹 Create 4 Target Groups:**
+## **Create 4 Target Groups:**
 
 Each target group uses a **path-based health check** to ensure that only healthy EC2 instances receive traffic.
 
@@ -481,7 +486,7 @@ Each target group uses a **path-based health check** to ensure that only healthy
 | TG-Laptop      | `/laptop/`        |
 | TG-Accessories | `/accessories/`   |
 
-## **🔹 Register Targets:**
+## **Register Targets:**
 
 Add 2 EC2 instances per target group
 
@@ -490,9 +495,9 @@ Add 2 EC2 instances per target group
 
 ---
 
-# **8️⃣ Create Application Load Balancer (ALB):**
+# **8️) Create Application Load Balancer (ALB):**
 
-## **🔹 Steps:**
+## **Steps:**
 
 1. Go to EC2 → Load Balancers → Create Load Balancer
 
@@ -508,7 +513,7 @@ Add 2 EC2 instances per target group
 
 7. Subnets: Select at least 2 public subnets
 
-## **🔹 Security Group:**
+## **Security Group:**
 
 Allow:
 
@@ -521,11 +526,11 @@ Allow:
 
 ---
 
-# **9️⃣ Configure ALB Listener Rules (Path-Based Routing) :**
+# **9️) Configure ALB Listener Rules (Path-Based Routing) :**
 
 The Application Load Balancer routes incoming traffic based on the URL path patterns defined below.
 
-## **🔹 Steps:**
+## **Steps:**
 
 1. Open ALB → Listeners → HTTP : 80
 
@@ -543,9 +548,9 @@ The Application Load Balancer routes incoming traffic based on the URL path patt
 
 ---
 
-# **🧪 Testing & Verification:**
+# **Testing & Verification:**
 
-## **🔹 Steps:**
+## **Steps:**
 
 1. Copy ALB DNS name
 
@@ -561,7 +566,7 @@ To verify that the Application Load Balancer (ALB) is correctly distributing tra
 
 Two screenshots were captured for the same page, and each screenshot displays a different server identity (IP address / hostname).
 
-## **🔹 Home Page:**
+## **Home Page:**
 
 **Screenshot:**
 ![Home Page](screenshots/Home1.png)
@@ -571,7 +576,7 @@ Two screenshots were captured for the same page, and each screenshot displays a 
 
 ---
 
-## **🔹 Mobile Page:**
+## **Mobile Page:**
 
 **Screenshot:**
 ![Home Page](screenshots/Mobile1.png)
@@ -581,7 +586,7 @@ Two screenshots were captured for the same page, and each screenshot displays a 
 
 ---
 
-## **🔹 Laptop Page:**
+## **Laptop Page:**
 
 **Screenshot:**
 ![Home Page](screenshots/Laptop1.png)
@@ -591,7 +596,7 @@ Two screenshots were captured for the same page, and each screenshot displays a 
 
 ---
 
-## **🔹 Accessories Page:**
+## **Accessories Page:**
 
 **Screenshot:**
 ![Home Page](screenshots/Acc1.png)
