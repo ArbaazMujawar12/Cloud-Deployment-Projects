@@ -1,6 +1,6 @@
-# Deploying Student Portal App (Flask + MySQL +Frontend) on AWS EC2 Using Gunicorn & Nginx
+# **Deploying Student Portal App (Flask + MySQL +Frontend) on AWS EC2 Using Gunicorn & Nginx**
 
-## ✅ Overview
+## Project Overview:
 
 This guide explains how to deploy a **production-ready Flask application** on **Amazon Linux EC2**, using:
 
@@ -10,17 +10,17 @@ This guide explains how to deploy a **production-ready Flask application** on **
 - Nginx (reverse proxy)
 - Systemd service for auto-start
 
-📌 **Project:** Student Portal — A web app for managing student registration and login.
+# **Project:** Student Portal — A web app for managing student registration and login.
 
 ---
 
-# 📐 System Architecture Diagram
+# System Architecture Diagram
 
 ![System Architecture](screenshots/system-architecture.png)
 
 ---
 
-# 🚀 Step-by-Step Deployment Guide
+# Step-by-Step Deployment Guide
 
 ---
 
@@ -287,7 +287,7 @@ sudo systemctl status nginx
 
 ---
 
-## **11. 🎉 Deployment Success**
+## **11. Deployment Success**
 
 > **Theory:** Your application is now hosted on the cloud, accessible over the internet via your EC2 public IP and ready for users.
 
